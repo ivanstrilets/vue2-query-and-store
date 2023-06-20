@@ -32,6 +32,14 @@ export default {
       );
     },
   },
+  created() {
+    window.onpopstate = () => {
+      this.setFilter(this.$route.query.filter);
+    };
+  },
+  beforeDestroy() {
+    window.onpopstate = null;
+  },
   methods: {
     setFilter(num) {
       this.$store.state.filter = num;
